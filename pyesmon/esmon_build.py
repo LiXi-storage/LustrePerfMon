@@ -1101,13 +1101,13 @@ def esmon_do_build(current_dir, relative_workspace, config, config_fpath):
 
     collectd_git_url = esmon_common.config_value(config, "collectd_git_url")
     if collectd_git_url is None:
-        collectd_git_url = "https://github.com/DDNStorage/collectd.git"
+        collectd_git_url = "https://github.com/LiXi-storage/collectd.git"
         logging.info("can NOT find [collectd_git_url] in the config, "
                      "use default value [%s]", collectd_git_url)
 
     collectd_git_branch = esmon_common.config_value(config, "collectd_git_branch")
     if collectd_git_branch is None:
-        collectd_git_branch = "master-ddn"
+        collectd_git_branch = "LustrePerfMon-5.7.2"
         logging.info("can NOT find [collectd_git_branch] in the config, "
                      "use default value [%s]", collectd_git_branch)
 

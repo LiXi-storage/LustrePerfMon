@@ -1539,7 +1539,7 @@ class EsmonClient(object):
                 else:
                     version_string += " " + possible_version.lv_name
             if LUSTRE_DEFAULT_VERSION is None:
-                logging.error("can't deterimine Lustre version according to "
+                logging.error("can't determine Lustre version according to "
                               "RPM names on host [%s], possible versions are "
                               "[%s], and no Lustre default version is "
                               "configured",
