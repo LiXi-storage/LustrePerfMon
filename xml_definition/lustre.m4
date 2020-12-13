@@ -341,6 +341,56 @@ dnl $9: tsdb_name OPTION
 dnl $10: tsdb_index OPTION
 dnl $11: size of the field
 dnl $12: is first child of parent definition
+define(`OSC_RPC_STATS_FIELD',
+	`ELEMENT($1, field,
+	`INDEX($1 + 1, $2, 1)
+NAME($1 + 1, $3, 0)
+TYPE($1 + 1, $4, 0)
+OPTION($1 + 1, host, ${key:hostname}, 0)
+OPTION($1 + 1, plugin, $5, 0)
+OPTION($1 + 1, plugin_instance, $6, 0)
+OPTION($1 + 1, type, $7, 0)
+OPTION($1 + 1, type_instance, $8, 0)
+OPTION($1 + 1, tsdb_name, $9, 0)
+OPTION($1 + 1, tsdb_tags, field=$3 $10 size=$11, 0)', $12)')dnl
+dnl
+define(`OSC_RPC_STATS_INDEX',
+`fs_name=${subpath:fs_name} ost_index=${subpath:ost_index} client_uuid=${subpath:client_uuid}')dnl
+dnl
+define(`OSC_RPC_STATS_PLUGIN',
+`${subpath:fs_name}-${subpath:ost_index}-osc-${subpath:client_uuid}')dnl
+dnl
+dnl $1: number of INDENT
+dnl $2: name of OSC_RPC_STATS_ITEM
+dnl $3: context regular expression
+dnl $4: start pattern of item
+dnl $5: first field name
+dnl $6: is first child of parent definition
+define(`OSC_RPC_STATS_ITEM',
+	`ELEMENT($1, item,
+	`NAME($1 + 1, osc_rpc_stats_$2, 1)
+CONTEXT($1 + 1, $3, 0)
+PATTERN($1 + 1, `^($4):[[:blank:]]+([[:digit:]]+)[[:blank:]]+([[:digit:]]+)[[:blank:]]+([[:digit:]]+)[[:blank:]]+\|[[:blank:]]+([[:digit:]]+)[[:blank:]]+([[:digit:]]+)[[:blank:]]+([[:digit:]]+).*', 0)
+OSC_RPC_STATS_FIELD($1 + 1, 1, $5, string, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, , $5, osc_rpc_stats_$2_string, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)
+OSC_RPC_STATS_FIELD($1 + 1, 2, read_sample, number, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, derive, read_sample, osc_rpc_stats_$2_samples, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)
+OSC_RPC_STATS_FIELD($1 + 1, 3, read_percentage, number, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, gauge, read_percentage, osc_rpc_stats_$2_percentage, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)
+OSC_RPC_STATS_FIELD($1 + 1, 4, read_cum, number, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, gauge, read_cum, osc_rpc_stats_$2_cum, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)
+OSC_RPC_STATS_FIELD($1 + 1, 5, write_sample, number, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, derive, write_sample, osc_rpc_stats_$2_samples, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)
+OSC_RPC_STATS_FIELD($1 + 1, 6, write_percentage, number, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, gauge, write_percentage, osc_rpc_stats_$2_percentage, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)
+OSC_RPC_STATS_FIELD($1 + 1, 7, write_cum, number, OSC_RPC_STATS_PLUGIN, rpc_stats_$2_${content:$5}_$5, gauge, write_cum, osc_rpc_stats_$2_cum, OSC_RPC_STATS_INDEX, ${content:$5}_$5, 0)', $6)')dnl
+dnl
+dnl $1: number of INDENT
+dnl $2: index of FIELD
+dnl $3: name of FIELD
+dnl $4: type of FIELD
+dnl $5: plugin OPTION
+dnl $6: plugin_instance OPTION
+dnl $7: type OPTION
+dnl $8: type_instance OPTION
+dnl $9: tsdb_name OPTION
+dnl $10: tsdb_index OPTION
+dnl $11: size of the field
+dnl $12: is first child of parent definition
 define(`OST_BRW_STATS_FIELD',
 	`ELEMENT($1, field,
 	`INDEX($1 + 1, $2, 1)

@@ -121,6 +121,48 @@ HEAD(Lustre-es5_2)
 		<entry>
 			<subpath>
 				<subpath_type>constant</subpath_type>
+				<path>osc</path>
+			</subpath>
+			<mode>directory</mode>
+			<entry>
+				<subpath>
+					<subpath_type>regular_expression</subpath_type>
+					<path>(^.+)-(OST[0-9a-fA-F]+)-osc-([0-9a-fA-F]+)</path>
+					<subpath_field>
+						<index>1</index>
+						<name>fs_name</name>
+					</subpath_field>
+					<subpath_field>
+						<index>2</index>
+						<name>ost_index</name>
+					</subpath_field>
+					<subpath_field>
+						<index>3</index>
+						<name>client_uuid</name>
+					</subpath_field>
+				</subpath>
+				<mode>directory</mode>
+				<entry>
+					<subpath>
+						<subpath_type>constant</subpath_type>
+						<path>rpc_stats</path>
+					</subpath>
+					<mode>file</mode>
+					OSC_RPC_STATS_ITEM(5, pages_per_rpc, ^pages per rpc .+
+(.+
+)*$, [[:digit:]]+, pages_per_rpc, 1)
+					OSC_RPC_STATS_ITEM(5, rpcs_in_flight, ^rpcs in flight .+
+(.+
+)*$, [[:digit:]]+, rpcs_in_flight, 1)
+					OSC_RPC_STATS_ITEM(5, offset, ^offset .+
+(.+
+)*$, [[:digit:]]+, offset, 1)
+				</entry>
+			</entry>
+		</entry>
+		<entry>
+			<subpath>
+				<subpath_type>constant</subpath_type>
 				<path>osd-ldiskfs</path>
 			</subpath>
 			<mode>directory</mode>
