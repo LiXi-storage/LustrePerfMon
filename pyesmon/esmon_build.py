@@ -1370,7 +1370,7 @@ def usage():
 
 def main():
     """
-    Install Exascaler monitoring
+    Install Lustre Performance Monitoring
     """
     # pylint: disable=unused-variable
     reload(sys)
@@ -1406,11 +1406,11 @@ def main():
     config_fpath_exists = os.path.exists(config_fpath)
     if not config_fpath_exists:
         config_fpath = None
-        print("Started building Exascaler monitoring system using default config, "
+        print("Started building Lustre Performance Monitoring system using default config, "
               "please check [%s] for more log" %
               (local_workspace))
     else:
-        print("Started building Exascaler monitoring system using config [%s], "
+        print("Started building Lustre Performance Monitoring system using config [%s], "
               "please check [%s] for more log" %
               (config_fpath, local_workspace))
     utils.configure_logging(local_workspace)
@@ -1428,5 +1428,5 @@ def main():
     if ret:
         logging.error("build failed")
         sys.exit(ret)
-    logging.info("Exascaler monistoring system is successfully built")
+    logging.info("Lustre Performance Monitoring system is successfully built")
     sys.exit(0)

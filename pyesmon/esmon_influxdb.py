@@ -93,7 +93,7 @@ def usage():
 
 def main():
     """
-    Test Exascaler monitoring
+    Test Lustre Performance Monitoring
     """
     # pylint: disable=unused-variable
     reload(sys)

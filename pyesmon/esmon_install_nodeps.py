@@ -2775,7 +2775,7 @@ def usage():
 
 def main():
     """
-    Install Exascaler monitoring
+    Install Lustre Performance Monitoring
     """
     reload(sys)
     sys.setdefaultencoding("utf-8")
@@ -2802,7 +2802,7 @@ def main():
         logging.error("[%s] is not a directory", workspace)
         sys.exit(-1)
 
-    print("Started installing Exascaler monitoring system using config [%s], "
+    print("Started installing Lustre Performance Monitoring system using config [%s], "
           "please check [%s] for more log" %
           (config_fpath, workspace))
     utils.configure_logging(workspace)
@@ -2812,6 +2812,6 @@ def main():
         logging.error("installation failed, please check [%s] for more log\n",
                       workspace)
         sys.exit(ret)
-    logging.info("Exascaler monistoring system is installed, please check [%s] "
+    logging.info("Lustre Performance Monitoring system is installed, please check [%s] "
                  "for more log", workspace)
     sys.exit(0)

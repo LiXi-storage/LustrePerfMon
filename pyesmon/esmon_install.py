@@ -214,7 +214,7 @@ def usage():
 
 def main():
     """
-    Install Exascaler monitoring
+    Install Lustre Performance Monitoring
     """
     # pylint: disable=unused-variable,too-many-branches
     argc = len(sys.argv)

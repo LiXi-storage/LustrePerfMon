@@ -836,7 +836,7 @@ def usage():
 
 def main():
     """
-    Test Exascaler monitoring
+    Test Lustre Test Monitoring
     """
     # Some command out needs to be parsed, so make sure the language is
     # English.
